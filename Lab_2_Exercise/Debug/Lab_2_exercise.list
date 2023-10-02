@@ -37,13 +37,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00016448  00000000  00000000  0002b060  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00009ada  00000000  00000000  000414a8  2**0
+ 17 .debug_line   00009ad6  00000000  00000000  000414a8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00081ed8  00000000  00000000  0004af82  2**0
+ 18 .debug_str    00081ed8  00000000  00000000  0004af7e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000cce5a  2**0
+ 19 .comment      00000053  00000000  00000000  000cce56  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000265c  00000000  00000000  000cceb0  2**2
+ 20 .debug_frame  0000265c  00000000  00000000  000cceac  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -552,13 +552,13 @@ int main(void)
  800048a:	f000 f917 	bl	80006bc <setTimer1>
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 1);
- 800048e:	2201      	movs	r2, #1
+  HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 0);
+ 800048e:	2200      	movs	r2, #0
  8000490:	2140      	movs	r1, #64	; 0x40
  8000492:	4813      	ldr	r0, [pc, #76]	; (80004e0 <main+0x74>)
  8000494:	f000 fcde 	bl	8000e54 <HAL_GPIO_WritePin>
-  HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 0);
- 8000498:	2200      	movs	r2, #0
+  HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 1);
+ 8000498:	2201      	movs	r2, #1
  800049a:	2180      	movs	r1, #128	; 0x80
  800049c:	4810      	ldr	r0, [pc, #64]	; (80004e0 <main+0x74>)
  800049e:	f000 fcd9 	bl	8000e54 <HAL_GPIO_WritePin>
@@ -571,32 +571,33 @@ int main(void)
  80004a6:	4b0f      	ldr	r3, [pc, #60]	; (80004e4 <main+0x78>)
  80004a8:	681b      	ldr	r3, [r3, #0]
  80004aa:	2b01      	cmp	r3, #1
- 80004ac:	d1fb      	bne.n	80004a6 <main+0x3a>
+ 80004ac:	d112      	bne.n	80004d4 <main+0x68>
 	  {
-		 HAL_GPIO_TogglePin(EN_0_GPIO_Port, EN_0_Pin);
- 80004ae:	2140      	movs	r1, #64	; 0x40
- 80004b0:	480b      	ldr	r0, [pc, #44]	; (80004e0 <main+0x74>)
- 80004b2:	f000 fce7 	bl	8000e84 <HAL_GPIO_TogglePin>
-		 HAL_GPIO_TogglePin(EN_1_GPIO_Port, EN_1_Pin);
- 80004b6:	2180      	movs	r1, #128	; 0x80
- 80004b8:	4809      	ldr	r0, [pc, #36]	; (80004e0 <main+0x74>)
- 80004ba:	f000 fce3 	bl	8000e84 <HAL_GPIO_TogglePin>
-		 display7SEG(status);
- 80004be:	6878      	ldr	r0, [r7, #4]
- 80004c0:	f7ff fe44 	bl	800014c <display7SEG>
 		 if (status == 1) status = 2;
- 80004c4:	687b      	ldr	r3, [r7, #4]
- 80004c6:	2b01      	cmp	r3, #1
- 80004c8:	d102      	bne.n	80004d0 <main+0x64>
- 80004ca:	2302      	movs	r3, #2
- 80004cc:	607b      	str	r3, [r7, #4]
- 80004ce:	e001      	b.n	80004d4 <main+0x68>
+ 80004ae:	687b      	ldr	r3, [r7, #4]
+ 80004b0:	2b01      	cmp	r3, #1
+ 80004b2:	d102      	bne.n	80004ba <main+0x4e>
+ 80004b4:	2302      	movs	r3, #2
+ 80004b6:	607b      	str	r3, [r7, #4]
+ 80004b8:	e001      	b.n	80004be <main+0x52>
 		 else status = 1;
- 80004d0:	2301      	movs	r3, #1
- 80004d2:	607b      	str	r3, [r7, #4]
+ 80004ba:	2301      	movs	r3, #1
+ 80004bc:	607b      	str	r3, [r7, #4]
+		 HAL_GPIO_TogglePin(EN_0_GPIO_Port, EN_0_Pin);
+ 80004be:	2140      	movs	r1, #64	; 0x40
+ 80004c0:	4807      	ldr	r0, [pc, #28]	; (80004e0 <main+0x74>)
+ 80004c2:	f000 fcdf 	bl	8000e84 <HAL_GPIO_TogglePin>
+		 HAL_GPIO_TogglePin(EN_1_GPIO_Port, EN_1_Pin);
+ 80004c6:	2180      	movs	r1, #128	; 0x80
+ 80004c8:	4805      	ldr	r0, [pc, #20]	; (80004e0 <main+0x74>)
+ 80004ca:	f000 fcdb 	bl	8000e84 <HAL_GPIO_TogglePin>
 		 setTimer1(50);
- 80004d4:	2032      	movs	r0, #50	; 0x32
- 80004d6:	f000 f8f1 	bl	80006bc <setTimer1>
+ 80004ce:	2032      	movs	r0, #50	; 0x32
+ 80004d0:	f000 f8f4 	bl	80006bc <setTimer1>
+  	  }
+	  display7SEG(status);
+ 80004d4:	6878      	ldr	r0, [r7, #4]
+ 80004d6:	f7ff fe39 	bl	800014c <display7SEG>
 	  if (timer1_flag == 1)
  80004da:	e7e4      	b.n	80004a6 <main+0x3a>
  80004dc:	20000030 	.word	0x20000030

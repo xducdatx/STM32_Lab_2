@@ -94,20 +94,20 @@ int main(void)
   setTimer1(50);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 1);
-  HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 0);
+  HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 0);
+  HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 1);
   int status = 1;
   while (1)
   {
 	  if (timer1_flag == 1)
 	  {
-		 HAL_GPIO_TogglePin(EN_0_GPIO_Port, EN_0_Pin);
-		 HAL_GPIO_TogglePin(EN_1_GPIO_Port, EN_1_Pin);
-		 display7SEG(status);
 		 if (status == 1) status = 2;
 		 else status = 1;
+		 HAL_GPIO_TogglePin(EN_0_GPIO_Port, EN_0_Pin);
+		 HAL_GPIO_TogglePin(EN_1_GPIO_Port, EN_1_Pin);
 		 setTimer1(50);
   	  }
+	  display7SEG(status);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
