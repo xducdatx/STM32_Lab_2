@@ -95,7 +95,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(100);
+  setTimer1(25);
+  setTimer2(100);
   HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 0);
   HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 1);
   HAL_GPIO_WritePin(EN_2_GPIO_Port, EN_2_Pin, 1);
@@ -107,8 +108,13 @@ int main(void)
 	  {
 		 if (index > 3) index = 0;
 		 update7SEG(index++);
-		 setTimer1(100);
+		 setTimer1(25);
   	  }
+	  if (timer2_flag == 1)
+	  {
+		 HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+		 setTimer2(100);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -241,6 +247,7 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	timer1Run();
+	timer2Run();
 }
 void changeEN()
 {
