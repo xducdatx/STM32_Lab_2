@@ -11,4 +11,8 @@
 void display7SEG(int num);
 void update7SEG(int index);
 void unEnableAll();
+extern int hour;
+extern int minute;
+extern int second;
+void updateClockBuffer();
 #endif /* INC_LED_H_ */
