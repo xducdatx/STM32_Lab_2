@@ -52,7 +52,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
-void changeEN();
+//void changeEN();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -95,30 +95,32 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(50);
-  setTimer2(100);
-  HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 0);
-  HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 1);
-  HAL_GPIO_WritePin(EN_2_GPIO_Port, EN_2_Pin, 1);
-  HAL_GPIO_WritePin(EN_3_GPIO_Port, EN_3_Pin, 1);
-  int status = 1;
+  setTimer1(1);
+//  setTimer2(100);
+//  HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 0);
+//  HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 1);
+//  HAL_GPIO_WritePin(EN_2_GPIO_Port, EN_2_Pin, 1);
+//  HAL_GPIO_WritePin(EN_3_GPIO_Port, EN_3_Pin, 1);
+//  int status = 1;
   while (1)
   {
 	  if (timer1_flag == 1)
 	  {
-		 changeEN();
-		 if (status == 1) status = 2;
-		 else if (status == 2) status = 3;
-		 else if (status == 3) status = 0;
-		 else if (status == 0) status = 1;
-		 setTimer1(50);
-  	  }
-	  if (timer2_flag == 1)
-	  {
 		 HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-		 setTimer2(100);
-	  }
-	  display7SEG(status);
+		 setTimer1(200);
+//		 changeEN();
+//		 if (status == 1) status = 2;
+//		 else if (status == 2) status = 3;
+//		 else if (status == 3) status = 0;
+//		 else if (status == 0) status = 1;
+//		 setTimer1(50);
+  	  }
+//	  if (timer2_flag == 1)
+//	  {
+//		 HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+//		 setTimer2(100);
+//	  }
+//	  display7SEG(status);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -251,31 +253,31 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	timer1Run();
-	timer2Run();
+//	timer2Run();
 }
-void changeEN()
-{
-	if (HAL_GPIO_ReadPin(EN_0_GPIO_Port, EN_0_Pin) == 0)
-	{
-		HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 1);
-		HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 0);
-	}
-	else if (HAL_GPIO_ReadPin(EN_1_GPIO_Port, EN_1_Pin) == 0)
-	{
-		HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 1);
-		HAL_GPIO_WritePin(EN_2_GPIO_Port, EN_2_Pin, 0);
-	}
-	else if (HAL_GPIO_ReadPin(EN_2_GPIO_Port, EN_2_Pin) == 0)
-	{
-		HAL_GPIO_WritePin(EN_2_GPIO_Port, EN_2_Pin, 1);
-		HAL_GPIO_WritePin(EN_3_GPIO_Port, EN_3_Pin, 0);
-	}
-	else if (HAL_GPIO_ReadPin(EN_3_GPIO_Port, EN_3_Pin) == 0)
-	{
-		HAL_GPIO_WritePin(EN_3_GPIO_Port, EN_3_Pin, 1);
-		HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 0);
-	}
-}
+//void changeEN()
+//{
+//	if (HAL_GPIO_ReadPin(EN_0_GPIO_Port, EN_0_Pin) == 0)
+//	{
+//		HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 1);
+//		HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 0);
+//	}
+//	else if (HAL_GPIO_ReadPin(EN_1_GPIO_Port, EN_1_Pin) == 0)
+//	{
+//		HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 1);
+//		HAL_GPIO_WritePin(EN_2_GPIO_Port, EN_2_Pin, 0);
+//	}
+//	else if (HAL_GPIO_ReadPin(EN_2_GPIO_Port, EN_2_Pin) == 0)
+//	{
+//		HAL_GPIO_WritePin(EN_2_GPIO_Port, EN_2_Pin, 1);
+//		HAL_GPIO_WritePin(EN_3_GPIO_Port, EN_3_Pin, 0);
+//	}
+//	else if (HAL_GPIO_ReadPin(EN_3_GPIO_Port, EN_3_Pin) == 0)
+//	{
+//		HAL_GPIO_WritePin(EN_3_GPIO_Port, EN_3_Pin, 1);
+//		HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 0);
+//	}
+//}
 /* USER CODE END 4 */
 
 /**
