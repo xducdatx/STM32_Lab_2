@@ -780,6 +780,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  //Exercise_8
   setTimer1(25);
  8000610:	2019      	movs	r0, #25
  8000612:	f000 f969 	bl	80008e8 <setTimer1>

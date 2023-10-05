@@ -95,6 +95,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  //Exercise_8
   setTimer1(25);
   setTimer2(100);
   HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 0);
