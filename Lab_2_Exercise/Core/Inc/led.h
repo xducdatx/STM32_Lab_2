@@ -15,4 +15,6 @@ extern int hour;
 extern int minute;
 extern int second;
 void updateClockBuffer();
+void updateLEDMatrix(int index);
+void unEnableAllGPIOB();
 #endif /* INC_LED_H_ */

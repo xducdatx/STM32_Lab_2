@@ -52,7 +52,6 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
-void changeEN();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -95,46 +94,17 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(25);
-  setTimer2(100);
-  HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 0);
-  HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 1);
-  HAL_GPIO_WritePin(EN_2_GPIO_Port, EN_2_Pin, 1);
-  HAL_GPIO_WritePin(EN_3_GPIO_Port, EN_3_Pin, 1);
+  setTimer1(100);
   int index = 0;
-  hour = 15;
-  minute = 8;
-  second = 50;
+  unEnableAllGPIOB();
   while (1)
   {
 	  if (timer1_flag == 1)
 	  {
-		 if (index > 3) index = 0;
-		 update7SEG(index++);
-		 setTimer1(25);
+		 if (index > 7) index = 0;
+		 updateLEDMatrix(index++);
+		 setTimer1(1);
   	  }
-	  if (timer2_flag == 1)
-	  {
-		 HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-		 second ++;
-		 if (second >= 60)
-		 {
-			 second = 0;
-			 minute ++;
-		 }
-		 if (minute >= 60)
-		 {
-			 minute = 0;
-			 hour ++;
-		 }
-		 if (hour >= 24)
-		 {
-			 hour = 0;
-		 }
-		 updateClockBuffer();
-		 setTimer2(100);
-	  }
-	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -279,30 +249,6 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	timer1Run();
-	timer2Run();
-}
-void changeEN()
-{
-	if (HAL_GPIO_ReadPin(EN_0_GPIO_Port, EN_0_Pin) == 0)
-	{
-		HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 1);
-		HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 0);
-	}
-	else if (HAL_GPIO_ReadPin(EN_1_GPIO_Port, EN_1_Pin) == 0)
-	{
-		HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 1);
-		HAL_GPIO_WritePin(EN_2_GPIO_Port, EN_2_Pin, 0);
-	}
-	else if (HAL_GPIO_ReadPin(EN_2_GPIO_Port, EN_2_Pin) == 0)
-	{
-		HAL_GPIO_WritePin(EN_2_GPIO_Port, EN_2_Pin, 1);
-		HAL_GPIO_WritePin(EN_3_GPIO_Port, EN_3_Pin, 0);
-	}
-	else if (HAL_GPIO_ReadPin(EN_3_GPIO_Port, EN_3_Pin) == 0)
-	{
-		HAL_GPIO_WritePin(EN_3_GPIO_Port, EN_3_Pin, 1);
-		HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 0);
-	}
 }
 /* USER CODE END 4 */
 
