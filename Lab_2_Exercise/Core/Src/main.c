@@ -134,6 +134,7 @@ int main(void)
 		 HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		 setTimer2(100);
 	  }
+	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
