@@ -103,7 +103,7 @@ int main(void)
 	  {
 		 if (index > 7) index = 0;
 		 updateLEDMatrix(index++);
-		 setTimer1(1);
+		 setTimer1(100);
   	  }
     /* USER CODE END WHILE */
 
