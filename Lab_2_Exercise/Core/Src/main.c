@@ -94,7 +94,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(100);
+  setTimer1(25);
   int index = 0;
   unEnableAllGPIOB();
   while (1)
@@ -103,7 +103,7 @@ int main(void)
 	  {
 		 if (index > 7) index = 0;
 		 updateLEDMatrix(index++);
-		 setTimer1(100);
+		 setTimer1(25);
   	  }
     /* USER CODE END WHILE */
 
