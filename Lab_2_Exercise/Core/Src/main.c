@@ -94,7 +94,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(25);
+  setTimer1(3);
+  setTimer2(24);
   int index = 0;
   unEnableAllGPIOB();
   while (1)
@@ -103,8 +104,13 @@ int main(void)
 	  {
 		 if (index > 7) index = 0;
 		 updateLEDMatrix(index++);
-		 setTimer1(25);
+		 setTimer1(3);
   	  }
+	  if (timer2_flag == 1)
+	  {
+		  shiftMatrix();
+		  setTimer2(24);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -249,6 +255,7 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	timer1Run();
+	timer2Run();
 }
 /* USER CODE END 4 */
 

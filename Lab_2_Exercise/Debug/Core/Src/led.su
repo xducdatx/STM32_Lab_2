@@ -3,4 +3,5 @@ led.c:115:6:unEnableAll	8	static
 led.c:122:6:update7SEG	16	static
 led.c:151:6:updateClockBuffer	4	static
 led.c:178:6:updateLEDMatrix	16	static
-led.c:219:6:unEnableAllGPIOB	8	static
+led.c:219:6:shiftMatrix	16	static
+led.c:228:6:unEnableAllGPIOB	8	static

@@ -216,6 +216,15 @@ void updateLEDMatrix(int index)
 			break;
 	}
 }
+void shiftMatrix()
+{
+	uint16_t temp = matrix_buffer[7];
+	for (int i = 7; i >= 1; i--)
+	{
+		matrix_buffer[i] = matrix_buffer[i - 1];
+	}
+	matrix_buffer[0]= temp;
+}
 void unEnableAllGPIOB()
 {
 	HAL_GPIO_WritePin(ENM0_GPIO_Port, ENM0_Pin, 1);
