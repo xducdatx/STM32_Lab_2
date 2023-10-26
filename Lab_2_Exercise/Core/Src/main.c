@@ -96,7 +96,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 //  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-  setTimer1(1);
+  setTimer1(10);
 //  setTimer2(100);
 //  HAL_GPIO_WritePin(EN_0_GPIO_Port, EN_0_Pin, 0);
 //  HAL_GPIO_WritePin(EN_1_GPIO_Port, EN_1_Pin, 1);
